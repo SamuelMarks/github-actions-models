@@ -133,7 +133,7 @@ impl<T> From<Option<T>> for OptionalBody<T> {
 }
 
 /// A generic event trigger body.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct GenericEvent {
     #[serde(default)]
@@ -141,7 +141,7 @@ pub struct GenericEvent {
 }
 
 /// The body of a `pull_request` event trigger.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct PullRequest {
     #[serde(default)]
@@ -155,7 +155,7 @@ pub struct PullRequest {
 }
 
 /// The body of a `push` event trigger.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Push {
     #[serde(flatten)]
@@ -169,14 +169,14 @@ pub struct Push {
 }
 
 /// The body of a `cron` event trigger.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Cron {
     pub cron: String,
 }
 
 /// The body of a `workflow_call` event trigger.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct WorkflowCall {
     pub inputs: HashMap<String, WorkflowCallInput>,
@@ -185,7 +185,7 @@ pub struct WorkflowCall {
 }
 
 /// A single input in a `workflow_call` event trigger body.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct WorkflowCallInput {
     pub description: Option<String>,
@@ -196,7 +196,7 @@ pub struct WorkflowCallInput {
 }
 
 /// A single output in a `workflow_call` event trigger body.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct WorkflowCallOutput {
     pub description: Option<String>,
@@ -204,7 +204,7 @@ pub struct WorkflowCallOutput {
 }
 
 /// A single secret in a `workflow_call` event trigger body.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct WorkflowCallSecret {
     pub description: Option<String>,
@@ -212,7 +212,7 @@ pub struct WorkflowCallSecret {
 }
 
 /// The body of a `workflow_dispatch` event trigger.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct WorkflowDispatch {
     #[serde(default)]
@@ -220,7 +220,7 @@ pub struct WorkflowDispatch {
 }
 
 /// A single input in a `workflow_dispatch` event trigger body.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct WorkflowDispatchInput {
     pub description: Option<String>,
@@ -234,7 +234,7 @@ pub struct WorkflowDispatchInput {
 }
 
 /// The body of a `workflow_run` event trigger.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct WorkflowRun {
     pub workflows: Vec<String>,
@@ -245,7 +245,7 @@ pub struct WorkflowRun {
 }
 
 /// Branch filtering variants for event trigger bodies.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub enum BranchFilters {
     Branches(Vec<String>),
@@ -253,7 +253,7 @@ pub enum BranchFilters {
 }
 
 /// Tag filtering variants for event trigger bodies.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub enum TagFilters {
     Tags(Vec<String>),
@@ -261,7 +261,7 @@ pub enum TagFilters {
 }
 
 /// Path filtering variants for event trigger bodies.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub enum PathFilters {
     Paths(Vec<String>),

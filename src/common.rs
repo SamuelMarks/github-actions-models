@@ -95,7 +95,7 @@ impl ToString for EnvValue {
 /// A "literal or expr" type, for places in GitHub Actions where a
 /// key can either have a literal value (array, object, etc.) or an
 /// expression string.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(untagged)]
 pub enum LoE<T> {
     Literal(T),

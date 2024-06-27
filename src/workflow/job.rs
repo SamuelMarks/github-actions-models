@@ -11,7 +11,7 @@ use super::{Concurrency, Defaults};
 
 /// A "normal" GitHub Actions workflow job, i.e. a job composed of one
 /// or more steps on a runner.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct NormalJob {
     pub name: Option<String>,
@@ -52,14 +52,14 @@ pub enum RunsOn {
     },
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case", untagged)]
 pub enum DeploymentEnvironment {
     Name(String),
     NameURL { name: String, url: Option<String> },
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Step {
     pub id: Option<String>,
@@ -72,7 +72,7 @@ pub struct Step {
     pub body: StepBody,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case", untagged)]
 pub enum StepBody {
     Uses {
@@ -89,7 +89,7 @@ pub enum StepBody {
     },
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Strategy {
     pub matrix: LoE<Matrix>,
@@ -97,7 +97,7 @@ pub struct Strategy {
     pub max_parallel: Option<u64>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Matrix {
     #[serde(default)]
@@ -108,7 +108,7 @@ pub struct Matrix {
     pub dimensions: LoE<HashMap<String, Vec<Value>>>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case", untagged)]
 pub enum Container {
     Name(String),
@@ -124,13 +124,13 @@ pub enum Container {
     },
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 pub struct DockerCredentials {
     pub username: Option<String>,
     pub password: Option<String>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct ReusableWorkflowCallJob {
     pub name: Option<String>,

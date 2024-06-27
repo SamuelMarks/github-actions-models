@@ -14,7 +14,7 @@ use serde::Deserialize;
 use crate::common::{BoE, Env};
 
 /// A GitHub Actions action definition.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Action {
     pub name: String,
@@ -28,7 +28,7 @@ pub struct Action {
 }
 
 /// An action input.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Input {
     pub description: String,
@@ -37,7 +37,7 @@ pub struct Input {
 }
 
 /// An action output.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Output {
     pub description: String,
@@ -49,7 +49,7 @@ pub struct Output {
 ///
 /// A `runs` definition can be either a JavaScript action, a "composite" action
 /// (made up of several constituent actions), or a Docker action.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case", untagged)]
 pub enum Runs {
     JavaScript(JavaScript),
@@ -58,7 +58,7 @@ pub enum Runs {
 }
 
 /// A `runs` definition for a JavaScript action.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct JavaScript {
     /// The Node runtime to use for this action. This is one of:
@@ -87,7 +87,7 @@ pub struct JavaScript {
 }
 
 /// A `runs` definition for a composite action.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Composite {
     /// Invariant: `"composite"`
@@ -97,7 +97,7 @@ pub struct Composite {
 }
 
 /// An individual composite action step.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case", untagged)]
 pub enum Step {
     RunShell(RunShell),
@@ -105,7 +105,7 @@ pub enum Step {
 }
 
 /// A step that runs a command in a shell.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct RunShell {
     /// The command to run.
@@ -137,7 +137,7 @@ pub struct RunShell {
 }
 
 /// A step that uses another GitHub Action.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct UseAction {
     /// The GitHub Action being used.
@@ -152,7 +152,7 @@ pub struct UseAction {
 }
 
 /// A `runs` definition for a Docker action.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug, PartialEq)]
 #[serde(rename_all = "kebab-case")]
 pub struct Docker {
     /// Invariant: `"docker"`
