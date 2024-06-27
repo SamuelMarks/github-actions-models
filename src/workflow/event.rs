@@ -12,7 +12,7 @@ use serde::Deserialize;
 /// ```yaml
 /// on: push
 /// ```
-#[derive(Deserialize, PartialEq, Eq, Hash)]
+#[derive(Deserialize, PartialEq, Debug, Eq, Hash)]
 #[serde(rename_all = "snake_case")]
 pub enum BareEvent {
     BranchProtectionRule,
@@ -56,7 +56,7 @@ pub enum BareEvent {
 /// Workflow event triggers, with bodies.
 ///
 /// Like [`BareEvent`], but with per-event properties.
-#[derive(Default, Deserialize)]
+#[derive(Default, Deserialize, Debug, PartialEq)]
 #[serde(default, rename_all = "snake_case")]
 pub struct Events {
     pub branch_protection_rule: OptionalBody<GenericEvent>,
@@ -103,7 +103,7 @@ pub struct Events {
 /// between the non-presence of an event (no trigger) and the presence
 /// of an empty event body (e.g. `pull_request:`), which means "trigger
 /// with the defaults for this event type."
-#[derive(Default)]
+#[derive(Default, Debug, PartialEq)]
 pub enum OptionalBody<T> {
     Default,
     #[default]
